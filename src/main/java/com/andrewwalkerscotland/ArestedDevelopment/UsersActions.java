@@ -8,8 +8,8 @@ import io.restassured.response.Response;
 @Component
 public class UsersActions {
     Response response;
-    public void getUsers() {
-        response = RestAssured.get("https://reqres.in/api/users?page=2");
+    public void getUsers(String pageNo) {
+        response = RestAssured.get("https://reqres.in/api/users?page=" + pageNo);
     }
 
     public Response getUsersResponse() {

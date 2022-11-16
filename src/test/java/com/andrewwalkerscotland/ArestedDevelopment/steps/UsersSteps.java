@@ -19,15 +19,16 @@ public class UsersSteps {
 
     @Autowired
     UsersActions usersActions;
+
     Response response;
 
     public UsersSteps(UsersActions usersActions) {
         this.usersActions = usersActions;
     }
 
-    @Given("I hit the get endpoint for users")
-    public void hitGetUsersEndpoint() {
-        usersActions.getUsers();
+    @Given("I hit the get endpoint for users page {string}")
+    public void hitGetUsersEndpointPage(String pageNo) {
+        usersActions.getUsers(pageNo);
     }
 
     @Then("the response will have status {int}")
