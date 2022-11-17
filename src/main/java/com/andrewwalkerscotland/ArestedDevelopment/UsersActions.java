@@ -15,4 +15,8 @@ public class UsersActions {
     public Response getUsersResponse() {
         return response;
     }
+
+    public void getSingleUser(int userId) {
+        response = RestAssured.get("https://reqres.in/api/users/" + userId);
+    }
 }

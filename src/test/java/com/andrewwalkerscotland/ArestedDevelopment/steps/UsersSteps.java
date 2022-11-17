@@ -38,4 +38,9 @@ public class UsersSteps {
             .as("Response Code not 200")
             .isEqualTo(200);
     }
+
+    @Given("I hit the get endpoint for user id {int}")
+    public void hitTheGetEndpointForSingleUser(int userId) {
+        usersActions.getSingleUser(userId);
+    }
 }

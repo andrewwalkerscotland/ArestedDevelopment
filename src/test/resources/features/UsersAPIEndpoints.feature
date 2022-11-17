@@ -7,3 +7,7 @@ Feature: Users API Endpoints tests
       | pageNo |
       | 1      |
       | 2      |
+
+    Scenario: Get single user details
+      Given I hit the get endpoint for user id 1
+      Then the response will have status 200
