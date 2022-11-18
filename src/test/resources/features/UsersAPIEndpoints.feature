@@ -3,6 +3,7 @@ Feature: Users API Endpoints tests
   Scenario Outline: Get list of all users on page "<pageNo>"
     Given I hit the get endpoint for users page "<pageNo>"
     Then the response will have status 200
+    And the response will contain 6 users
     Examples:
       | pageNo |
       | 1      |
@@ -11,3 +12,4 @@ Feature: Users API Endpoints tests
     Scenario: Get single user details
       Given I hit the get endpoint for user id 1
       Then the response will have status 200
+      And the user email will be "george.bluth@reqres.in"

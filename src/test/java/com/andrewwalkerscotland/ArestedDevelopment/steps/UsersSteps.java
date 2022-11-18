@@ -2,12 +2,16 @@ package com.andrewwalkerscotland.ArestedDevelopment.steps;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.andrewwalkerscotland.ArestedDevelopment.UsersActions;
+import com.andrewwalkerscotland.ArestedDevelopment.UsersItem;
 import com.andrewwalkerscotland.ArestedDevelopment.config.ApplicationConfig;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.spring.CucumberContextConfiguration;
@@ -42,5 +46,21 @@ public class UsersSteps {
     @Given("I hit the get endpoint for user id {int}")
     public void hitTheGetEndpointForSingleUser(int userId) {
         usersActions.getSingleUser(userId);
+    }
+
+    @Then("the response will contain {int} users")
+    public void theResponseWillContainUsers(int listSize) {
+        List<UsersItem> responseList = usersActions.getUsersListFromResponse();
+        assertThat(responseList.size())
+            .as("Number of items in response not as expected")
+            .isEqualTo(listSize);
+    }
+
+    @And("the user email will be {string}")
+    public void theUserEmailWillBe(String expectedEmail) {
+        UsersItem usersItem = usersActions.getSingleUsersFromResponse();
+        assertThat(usersItem.getEmail())
+            .as("Email address not as expected")
+            .isEqualTo(expectedEmail);
     }
 }
