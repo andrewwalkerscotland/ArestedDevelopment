@@ -63,4 +63,28 @@ public class UsersSteps {
             .as("Email address not as expected")
             .isEqualTo(expectedEmail);
     }
+
+    @And("the user first name will be {string}")
+    public void theUserFirstNameWillBe(String expectedFirstName) {
+        UsersItem usersItem = usersActions.getSingleUsersFromResponse();
+        assertThat(usersItem.getFirst_name())
+            .as("First name not as expected")
+            .isEqualTo(expectedFirstName);
+    }
+
+    @And("the user last name will be {string}")
+    public void theUserLastNameWillBe(String expectedLastName) {
+        UsersItem usersItem = usersActions.getSingleUsersFromResponse();
+        assertThat(usersItem.getLast_name())
+            .as("Last name not as expected")
+            .isEqualTo(expectedLastName);
+    }
+
+    @And("the user avatar link will be {string}")
+    public void theUserAvatarLinkWillBe(String expectedAvatar) {
+        UsersItem usersItem = usersActions.getSingleUsersFromResponse();
+        assertThat(usersItem.getAvatar())
+            .as("Avatar not as expected")
+            .isEqualTo(expectedAvatar);
+    }
 }
